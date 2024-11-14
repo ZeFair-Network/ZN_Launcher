@@ -3,39 +3,35 @@ package com.zefair.launcher;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class LauncherUI extends Application {
+
     @Override
-    public void start(Stage stage) {
-        // Создаём элементы интерфейса
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Username");
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Minecraft Launcher");
 
-        TextField passwordField = new TextField();
-        passwordField.setPromptText("Password");
+        Button launchButton = new Button("Запустить Minecraft");
+        launchButton.setOnAction(event -> {
+            MinecraftLauncher minecraftLauncher = new MinecraftLauncher();
 
-        Button loginButton = new Button("Login");
+            // Передаем параметры для метода launchMinecraft
+            String username = "Ndr_Zet"; // Замените на нужное имя пользователя
+            String version = "1.19.2"; // Укажите нужную версию Minecraft
+            String gameDir = "C:\\Users\\karin\\AppData\\Roaming\\.minecraft"; // Каталог с игрой
+            String assetsDir = "C:\\Users\\karin\\AppData\\Roaming\\.minecraft\\assets"; // Каталог с ресурсами
 
-        // Логика для кнопки
-        loginButton.setOnAction(e -> {
-            String username = usernameField.getText();
-            String password = passwordField.getText();
-            // Вызов метода для авторизации
-            System.out.println("Username: " + username + ", Password: " + password);
+            minecraftLauncher.launchMinecraft(username, version, gameDir, assetsDir);
         });
 
-        // Расположение элементов
-        VBox vbox = new VBox(10, usernameField, passwordField, loginButton);
-        Scene scene = new Scene(vbox, 300, 200);
-
-        // Настройки окна
-        stage.setTitle("Minecraft Launcher");
-        stage.setScene(scene);
-        stage.show();
+        StackPane root = new StackPane();
+        root.getChildren().add(launchButton);
+        primaryStage.setScene(new Scene(root, 300, 200));
+        primaryStage.show();
     }
 
-public class LauncherUI {
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

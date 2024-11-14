@@ -1,0 +1,18 @@
+.root {
+    -fx-background-color: #2e2e2e; /* Цвет фона */
+}
+
+.label {
+    -fx-text-fill: #ffffff; /* Цвет текста */
+    -fx-font-size: 16px; /* Размер шрифта */
+}
+
+.button {
+    -fx-background-color: #4caf50; /* Цвет кнопки */
+    -fx-text-fill: #ffffff; /* Цвет текста кнопки */
+    -fx-padding: 10px; /* Отступы внутри кнопки */
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Цвет кнопки при наведении */
+}
